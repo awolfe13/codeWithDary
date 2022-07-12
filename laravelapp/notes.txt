@@ -1,4 +1,12 @@
 
+Debug Bar
+  composer require barryvdh/laravel-debugbar --dev
+    -debug bar added at bottom of browser window
+  Add to config file in "Providers" section
+    Barryvdh\Debugbar\ServiceProcider::class
+
+
+
 EXTENSIONS
 Extensions - php (to act like php storm)
 Laravel Artisan
@@ -31,10 +39,3 @@ VSCode great icons
 database client (paid)
 
 Community Material Theme 
-
-Debug Bar
-  composer require barryvdh/laravel-debugbar --dev
-    -debug bar added at bottom of browser window
-  Add to config file in "Providers" section
-    Barryvdh\Debugbar\ServiceProcider::class
-

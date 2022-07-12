@@ -20,8 +20,6 @@ Route::get('/', function () {
     Debugbar::class::warning('warning');
     Debugbar::class::addMessage('message');
     
-    
-    
     try {
         throw new Exception('Try Message');
     } catch(Exception $e) {
