@@ -6,3 +6,10 @@ Controllers
 -input validation
 
 -sends back response to user (view usually)
+
+Methods
+-public is accessible in web.php
+-private / protected only available inside controller class
+
+See Routes
+php artisan route:list

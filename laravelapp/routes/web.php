@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PostsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,8 +14,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+//forward slash is optional
+//Route::get('/blog', [PostsController::class, 'index']);
 
-//access variable from config > services > mailgun domain variable
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::resource('blog', PostsController::class);
