@@ -16,9 +16,5 @@ use Illuminate\Support\Facades\Route;
 
 //access variable from config > services > mailgun domain variable
 Route::get('/', function () {
-    dd(config('services.mailgun.domain'));
-    
-    //access env varialbe
-    dd(env('DB_HOST'));
     return view('welcome');
 });

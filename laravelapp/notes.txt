@@ -1,8 +1,8 @@
-ENV
-APP_KEY 
-  -make sure to have an APP Key
-  php artisan key:generate
+Controllers
 
-APP_DEBUG:
-  -true: user will see errors (used in dev)
-  -false: will just get browser errors
+-accepts http requests (forms submitted)
+-gets data from model
+-user auth
+-input validation
+
+-sends back response to user (view usually)
