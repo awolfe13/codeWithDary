@@ -13,21 +13,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+
+//access variable from config > services > mailgun domain variable
 Route::get('/', function () {
-    //show debugger functionality
-    Debugbar::class::error('error');
-    Debugbar::class::info('INFO');
-    Debugbar::class::warning('warning');
-    Debugbar::class::addMessage('message');
+    dd(config('services.mailgun.domain'));
     
-    try {
-        throw new Exception('Try Message');
-    } catch(Exception $e) {
-        Debugbar::class::addException($e);
-    }
-    //under views -shows params passed
-    $name = "Code with Dary";
-    return view('welcome', [
-        'name' => $name
-    ]);
+    //access env varialbe
+    dd(env('DB_HOST'));
+    return view('welcome');
 });

@@ -1,41 +1,8 @@
+ENV
+APP_KEY 
+  -make sure to have an APP Key
+  php artisan key:generate
 
-Debug Bar
-  composer require barryvdh/laravel-debugbar --dev
-    -debug bar added at bottom of browser window
-  Add to config file in "Providers" section
-    Barryvdh\Debugbar\ServiceProcider::class
-
-
-
-EXTENSIONS
-Extensions - php (to act like php storm)
-Laravel Artisan
-  -artisan commands within cli in vsc
-  cmd shift p artisan 
-
-Laravel Snippets  
-
-Laravel Blade Snippets
-  -snippets like html
-
-Laravel Blade Spacer
-  -adds space inside {{ var }}
-
-Laravel Extra Intellisense
-PHP intelephense
-   -autocompletion 
-
-Laravel goto view
-Laravel-goto-controller
-Laravel-goto-component
-  cmd + click on element and redirected
-
-PHP Namespace resolver
-Beautify
-dotenv
-paste json as code
-Tailwind CSS Intellisense
-VSCode great icons
-database client (paid)
-
-Community Material Theme 
+APP_DEBUG:
+  -true: user will see errors (used in dev)
+  -false: will just get browser errors
