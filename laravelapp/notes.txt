@@ -1,40 +1,26 @@
-Routes with Expressions
+Named Routes
 
--adding Regular Expressions to Routes
--Should only match a pattern (this example, will only accept numbers)
+-Instead of using static routes in blade / front, can use named routes
+-helps if change the uri and its not hardcoded route on front end
 
-Methods Chaining
--chain method calls
+Use 
+->name( )
 
-GENERIC WHERE
-->where( )
-'variable', '=', 'regex'
+RoutesRoute::get('/blog', [PostsController::class, 'index'])->name('blog.index');
 
-Numbers
-Route::get('/blog/{id}', [PostsController::class, 'show'])->where('id', '[0-9]+');
-  -will get error on /blog/ariel
+Static
+<a href="/blog">Blog</a>
 
-Alpha
-Route::get('/blog/{name}', [PostsController::class, 'show'])->where('name', '[A-Za-z]+');
-  -will get error on /blog/1
+Dynamic
+<a href={{ route('blog.index') }}>Blog</a>
 
-Both
-Route::get('/blog/{id}/{name}', [PostsController::class, 'show'])
-  ->where([
-    'id' => '[0-9]+',
-    'name' => '[A-Za-z]+'
-  ]);
-     
-   -will get error on /blog/ariel/1
-   -success on /blog/1/ariel  
+With Params
+Route::get('/blog/{id}', [PostsController::class, 'show'])->name('blog.show');
 
-WHERENUMBER
-Route::get('/blog/{id}', [PostsController::class, 'show'])->whereNumber('id');
+<a href={{ route('blog.show', ['id' => 1]) }}>Blog</a>
 
-WHEREALPHA
-Route::get('/blog/{name}', [PostsController::class, 'show'])->whereAlpha('name');
-
-Both 
-Route::get('/blog/{id}/{name}', [PostsController::class, 'show'])
-  ->whereNumber('id')
-  ->whereAlpha('name');
+Resource Route
+Route::resource('blog', PostsController::class);
+<a href={{ route('blog.show', ['id' => 1]) }}>Blog</a>
+   -will still work
+   -names will be automatically binded
