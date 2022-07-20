@@ -1,11 +1,40 @@
-Route params
+Routes with Expressions
 
-To make a route param OPTIONAL add a ?
-Route::get('/blog/{id?}', [PostsController::class, 'show']);
--any $id will override default
+-adding Regular Expressions to Routes
+-Should only match a pattern (this example, will only accept numbers)
 
--provide a default value inside controll method
-public function show($id = 1)
-    {
-        return $id;
-    }
+Methods Chaining
+-chain method calls
+
+GENERIC WHERE
+->where( )
+'variable', '=', 'regex'
+
+Numbers
+Route::get('/blog/{id}', [PostsController::class, 'show'])->where('id', '[0-9]+');
+  -will get error on /blog/ariel
+
+Alpha
+Route::get('/blog/{name}', [PostsController::class, 'show'])->where('name', '[A-Za-z]+');
+  -will get error on /blog/1
+
+Both
+Route::get('/blog/{id}/{name}', [PostsController::class, 'show'])
+  ->where([
+    'id' => '[0-9]+',
+    'name' => '[A-Za-z]+'
+  ]);
+     
+   -will get error on /blog/ariel/1
+   -success on /blog/1/ariel  
+
+WHERENUMBER
+Route::get('/blog/{id}', [PostsController::class, 'show'])->whereNumber('id');
+
+WHEREALPHA
+Route::get('/blog/{name}', [PostsController::class, 'show'])->whereAlpha('name');
+
+Both 
+Route::get('/blog/{id}/{name}', [PostsController::class, 'show'])
+  ->whereNumber('id')
+  ->whereAlpha('name');

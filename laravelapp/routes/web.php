@@ -22,7 +22,20 @@ Route::get('/', HomeController::class);
 
 //Get
 Route::get('/blog', [PostsController::class, 'index']);
-Route::get('/blog/{id?}', [PostsController::class, 'show']);
+Route::get('/blog/{id}', [PostsController::class, 'show'])->where('id', '[0-9]+');
+Route::get('/blog/{name}', [PostsController::class, 'show'])->where('name', '[A-Za-z]+');
+Route::get('/blog/{id}/{name}', [PostsController::class, 'show'])
+  ->where([
+    'id' => '[0-9]+',
+    'name' => '[A-Za-z]+'
+  ]);
+  
+Route::get('/blog/{id}', [PostsController::class, 'show'])->whereNumber('id');
+Route::get('/blog/{name}', [PostsController::class, 'show'])->whereAlpha('name');
+
+Route::get('/blog/{id}/{name}', [PostsController::class, 'show'])
+  ->whereNumber('id')
+  ->whereAlpha('name');
 
 //Post
 Route::get('/blog/create', [PostsController::class, 'create']);
