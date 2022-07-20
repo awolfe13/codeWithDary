@@ -1,25 +1,11 @@
-Routing
+Route params
 
-Get - request a resource
-Post - Create new resource (new row in db)
-Put - update a resource
-Patch - modify a resource (single values)
-Delete - delete a resource (row)
-Options - Ask server which verbs are allowed at uri
+To make a route param OPTIONAL add a ?
+Route::get('/blog/{id?}', [PostsController::class, 'show']);
+-any $id will override default
 
-Multiple Http Verbs/Methods - 2 ways
-
-accepts 3 params
-1) array - http verbs to check
-2) the endpoint
-3) Controller
-Route::match(['GET', 'POST'], '/blog', [PostsController::class, 'index']);
-
-accepts 2 params
-1- endpoint and 2-controller / function
-Route::any('/blog', [PostsController::class, 'index']);
-
-Dont use Controller, just return view
-2 required params and 1 opt
-1-uri 2-view 3- array of data
-Route::view('/blog', 'blog.index', ['name' => 'code with ariel']);
+-provide a default value inside controll method
+public function show($id = 1)
+    {
+        return $id;
+    }
