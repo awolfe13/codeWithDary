@@ -1,21 +1,14 @@
-Routing Prefixes
+Fallback routes
 
--group routes with predefined prefix
+-user accesses a page where page does not exist - 404
+-fallback route, override 404 page
 
-Route::prefix('/blog')->group(function () {
-    //routes go here
-});
+-need to be defined in web.page AT END OF FILE
+-cannot go above routes
 
--keep / if its the same as prefix
--otherwise first / can be removed if more following prefix
+ex
+-user wants to access blog post that doesn't exist
+-create a controller to display all available posts instead of 404 message
 
-Route::prefix('/blog')->group(function () {
-  //ex this get is '/blog' so blog removed but first / stays
-Route::get('/', [PostsController::class, 'index'])->name('blog.index');
-Route::get('/{id}', [PostsController::class, 'show'])->name('blog.show');
-Route::get('/create', [PostsController::class, 'create'])->name('blog.create');
-Route::post('/', [PostsController::class, 'store'])->name('blog.store');
-Route::get('/edit/{id}', [PostsController::class, 'edit'])->name('blog.edit');
-Route::patch('/{id}', [PostsController::class, 'update'])->name('blog.update');
-Route::delete('/{id}', [PostsController::class, 'destroy'])->name('blog.delete');
-});
+FallbackController
+-is same as single use controller, so use invoke method
