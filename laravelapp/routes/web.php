@@ -11,20 +11,18 @@ use App\Http\Controllers\HomeController;
 //Invoke Controller
 Route::get('/', HomeController::class);
 
-//Get
-Route::get('/blog', [PostsController::class, 'index'])->name('blog.index');
-Route::get('/blog/{id}', [PostsController::class, 'show'])->name('blog.show');
-
-//Post
-Route::get('/blog/create', [PostsController::class, 'create'])->name('blog.create');
-Route::post('/blog', [PostsController::class, 'store'])->name('blog.store');
-
-//Put or Patch
-Route::get('/blog/edit/{id}', [PostsController::class, 'edit'])->name('blog.edit');
-Route::patch('/blog/{id}', [PostsController::class, 'update'])->name('blog.update');
-
-//Delete
-Route::delete('/blog/1', [PostsController::class, 'destroy'])->name('blog.delete');
+//keep / if its the same as prefix
+//otherwise first / can be removed if more following prefix
+Route::prefix('/blog')->group(function () {
+  //ex this get is '/blog' so blog removed but first / stays
+Route::get('/', [PostsController::class, 'index'])->name('blog.index');
+Route::get('/{id}', [PostsController::class, 'show'])->name('blog.show');
+Route::get('/create', [PostsController::class, 'create'])->name('blog.create');
+Route::post('/', [PostsController::class, 'store'])->name('blog.store');
+Route::get('/edit/{id}', [PostsController::class, 'edit'])->name('blog.edit');
+Route::patch('/{id}', [PostsController::class, 'update'])->name('blog.update');
+Route::delete('/{id}', [PostsController::class, 'destroy'])->name('blog.delete');
+});
 
 /*
 //Multiple Http Verbs/Methods - 2 ways

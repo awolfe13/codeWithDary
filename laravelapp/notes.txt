@@ -1,26 +1,21 @@
-Named Routes
+Routing Prefixes
 
--Instead of using static routes in blade / front, can use named routes
--helps if change the uri and its not hardcoded route on front end
+-group routes with predefined prefix
 
-Use 
-->name( )
+Route::prefix('/blog')->group(function () {
+    //routes go here
+});
 
-RoutesRoute::get('/blog', [PostsController::class, 'index'])->name('blog.index');
+-keep / if its the same as prefix
+-otherwise first / can be removed if more following prefix
 
-Static
-<a href="/blog">Blog</a>
-
-Dynamic
-<a href={{ route('blog.index') }}>Blog</a>
-
-With Params
-Route::get('/blog/{id}', [PostsController::class, 'show'])->name('blog.show');
-
-<a href={{ route('blog.show', ['id' => 1]) }}>Blog</a>
-
-Resource Route
-Route::resource('blog', PostsController::class);
-<a href={{ route('blog.show', ['id' => 1]) }}>Blog</a>
-   -will still work
-   -names will be automatically binded
+Route::prefix('/blog')->group(function () {
+  //ex this get is '/blog' so blog removed but first / stays
+Route::get('/', [PostsController::class, 'index'])->name('blog.index');
+Route::get('/{id}', [PostsController::class, 'show'])->name('blog.show');
+Route::get('/create', [PostsController::class, 'create'])->name('blog.create');
+Route::post('/', [PostsController::class, 'store'])->name('blog.store');
+Route::get('/edit/{id}', [PostsController::class, 'edit'])->name('blog.edit');
+Route::patch('/{id}', [PostsController::class, 'update'])->name('blog.update');
+Route::delete('/{id}', [PostsController::class, 'destroy'])->name('blog.delete');
+});
