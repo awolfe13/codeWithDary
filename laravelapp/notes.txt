@@ -1,22 +1,45 @@
-Set Up & Connect to DB
-https://www.youtube.com/watch?v=4dId4tpEYII
+Migrations
+https://www.youtube.com/watch?v=wX-MsYST3kI
 
-config > database.php
--can have multiple drivers running on one project
+-tables = Migrations
+-create tables inside db without using db interface tool
+-4 default migrations are related to authentication 
+-when migrating, will migrate by date
 
-env
--define variables to be used inside the database.php file
+Migration Names
+time stamp_action_name
 
-Artisan Tinker
--can check if db is set up right
--accessed to cli
+Artisan
+php artisan make:migration create_posts_table
 
-php artisan tinker
+(2 opt params)
+php artisan make:migration create_posts_table --create=posts
+  -prefill migration table named
+php artisan make:migration create_posts_table --table=posts
+  -modification to existing table
 
-Check DB connection
-DB::connection()->getPdo();
+Inside Migration 
+  $table->string('title')->unique();
+    -title must be unique
 
--will get info on DB back if connected properly 
+  $table->text('exerpt')->nullable();
+    -column can have null values
+     
+  $table->integer('minutes_to_read')->default(1);
+    -gives a default of 1 minutes
 
-exit tinker
-exit;
+  $table->string('image_path');   
+     -cant store image, so will store the path to the image
+
+ Migrate the Tables to DB    
+ php artisan migrate
+    -runs all up methods that havent been run
+
+Show all Migrations
+php artisan migrate:status
+
+Rollback All Migrations
+php artisan migrate:reset
+
+Rollback And Migrates 
+php artisan migrate:refresh
