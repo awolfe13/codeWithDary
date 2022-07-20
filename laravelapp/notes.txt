@@ -13,3 +13,8 @@ Methods
 
 See Routes
 php artisan route:list
+
+Single Action Controllers
+Invoke
+-invoke an instance of a class, treated like a function to call it
+-one single method inside a controller
