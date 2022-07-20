@@ -1,14 +1,22 @@
-Fallback routes
+Set Up & Connect to DB
+https://www.youtube.com/watch?v=4dId4tpEYII
 
--user accesses a page where page does not exist - 404
--fallback route, override 404 page
+config > database.php
+-can have multiple drivers running on one project
 
--need to be defined in web.page AT END OF FILE
--cannot go above routes
+env
+-define variables to be used inside the database.php file
 
-ex
--user wants to access blog post that doesn't exist
--create a controller to display all available posts instead of 404 message
+Artisan Tinker
+-can check if db is set up right
+-accessed to cli
 
-FallbackController
--is same as single use controller, so use invoke method
+php artisan tinker
+
+Check DB connection
+DB::connection()->getPdo();
+
+-will get info on DB back if connected properly 
+
+exit tinker
+exit;

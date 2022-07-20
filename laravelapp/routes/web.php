@@ -32,5 +32,4 @@ Route::view('/blog', 'blog.index', ['name' => 'code with ariel']);
 */
 
 //Fallback Route
-//do not need to define method/end point
 Route::fallback(FallbackController::class);
