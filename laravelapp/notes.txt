@@ -1,20 +1,25 @@
-Controllers
+Routing
 
--accepts http requests (forms submitted)
--gets data from model
--user auth
--input validation
+Get - request a resource
+Post - Create new resource (new row in db)
+Put - update a resource
+Patch - modify a resource (single values)
+Delete - delete a resource (row)
+Options - Ask server which verbs are allowed at uri
 
--sends back response to user (view usually)
+Multiple Http Verbs/Methods - 2 ways
 
-Methods
--public is accessible in web.php
--private / protected only available inside controller class
+accepts 3 params
+1) array - http verbs to check
+2) the endpoint
+3) Controller
+Route::match(['GET', 'POST'], '/blog', [PostsController::class, 'index']);
 
-See Routes
-php artisan route:list
+accepts 2 params
+1- endpoint and 2-controller / function
+Route::any('/blog', [PostsController::class, 'index']);
 
-Single Action Controllers
-Invoke
--invoke an instance of a class, treated like a function to call it
--one single method inside a controller
+Dont use Controller, just return view
+2 required params and 1 opt
+1-uri 2-view 3- array of data
+Route::view('/blog', 'blog.index', ['name' => 'code with ariel']);
